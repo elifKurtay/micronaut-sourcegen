@@ -22,7 +22,7 @@ include("sourcegen-bom")
 
 include("test-suite-java")
 include("test-suite-bytecode")
-//include("test-suite-groovy")
+include("test-suite-groovy")
 include("test-suite-kotlin")
 include("test-suite-custom-annotations")
 include("test-suite-custom-generators")

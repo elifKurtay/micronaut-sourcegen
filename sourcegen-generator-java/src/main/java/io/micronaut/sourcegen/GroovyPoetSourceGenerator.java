@@ -17,6 +17,7 @@ package io.micronaut.sourcegen;
 
 import io.micronaut.core.annotation.Internal;
 import io.micronaut.inject.visitor.VisitorContext;
+import io.micronaut.sourcegen.javapoet.AnnotationSpec;
 
 /**
  * Reuse the Java source generator for Groovy.
@@ -29,6 +30,7 @@ public final class GroovyPoetSourceGenerator extends JavaPoetSourceGenerator {
 
     @Override
     public VisitorContext.Language getLanguage() {
+        // AnnotationSpec.changeListRepresentationToGroovy();
         return VisitorContext.Language.GROOVY;
     }
 }

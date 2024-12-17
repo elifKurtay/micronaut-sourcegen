@@ -39,6 +39,7 @@ import java.util.Objects;
 /** A generated annotation on a declaration. */
 public final class AnnotationSpec {
   public static final String VALUE = "value";
+  public static Map<String, String> LIST = Map.of("start","{", "end", "}");
 
   public final TypeName type;
   public final Map<String, List<AnnotationValueSpec>> members;
@@ -46,6 +47,12 @@ public final class AnnotationSpec {
   private AnnotationSpec(Builder builder) {
     this.type = builder.type;
     this.members = Util.immutableMultimap(builder.members);
+  }
+
+  public static void changeListRepresentationToGroovy() {
+      // change {} to [] for groovy
+      LIST.replace("start", "[");
+      LIST.replace("end", "]");
   }
 
   void emit(CodeWriter codeWriter, boolean inline) throws IOException {
@@ -85,7 +92,7 @@ public final class AnnotationSpec {
   private void emitAnnotationValues(CodeWriter codeWriter, String whitespace,
                                     String memberSeparator, List<AnnotationValueSpec> values, boolean inline) throws IOException {
     if (values.size() != 1) {
-      codeWriter.emit("{" + whitespace);
+      codeWriter.emit(LIST.get("start") + whitespace);
       codeWriter.indent(2);
     }
     boolean first = true;
@@ -100,7 +107,7 @@ public final class AnnotationSpec {
     }
     if (values.size() != 1) {
         codeWriter.unindent(2);
-        codeWriter.emit(whitespace + "}");
+        codeWriter.emit(whitespace + LIST.get("end"));
     }
   }
 
