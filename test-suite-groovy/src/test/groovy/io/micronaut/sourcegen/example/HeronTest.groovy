@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertSame
 class HeronTest {
     @Test
     void test() throws Exception {
-        BeanIntrospection<Heron> intro = BeanIntrospection.getIntrospection(Heron.class);
+        BeanIntrospection<Heron> intro = BeanIntrospection.getIntrospection(BlueHeron.class);
 
         AnnotationValue<Simple> simple = intro.getAnnotation(Simple.class);
         assertNotNull(simple);
